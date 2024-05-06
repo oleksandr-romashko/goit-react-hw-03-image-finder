@@ -1,5 +1,12 @@
 import css from "./ImageGallery.module.css";
 
+/**
+ * Gallery of images with a list of image cards.
+ * @returns {React.Component}
+ */
 export const ImageGallery = () => (
-  <div className={css.ImageGallery}>ImageGallery</div>
+  <ul className={css.gallery}>
+    {/* <! -- Set <li> 
+    with images --> */}
+  </ul>
 );

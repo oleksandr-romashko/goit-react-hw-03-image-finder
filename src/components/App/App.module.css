@@ -1,7 +1,7 @@
 /*
- * Стили компонента App
+ * Styles for App component
  */
-.App {
+.app {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 16px;

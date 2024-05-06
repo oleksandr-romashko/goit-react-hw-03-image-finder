@@ -1,6 +1,6 @@
 /*
- * Стили компонента Loader
+ * Styles for Loader component
  */
-.Loader {
+.loader {
   display: inline-flex;
 }
