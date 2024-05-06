@@ -15,7 +15,7 @@ The live page for this repository can be viewed at [GitHub Pages](https://oleksa
 
 ## Task Acceptance Criteria
 
-[React project template](https://github.com/goitacademy/react-homework-template/blob/main/README.en.md) is used as a starting point for the application (more information about how to start-up with such a project may be found at the template repo description or [here in a Readme file](./README.en.md)).
+[React project template](https://github.com/goitacademy/react-homework-template/blob/main/README.en.md) is used as a starting point for the application (more information about how to start-up with such a project may be found at the template repo description or [here in a Readme file](./README.project-template.en.md)).
 
   * The `goit-react-hw-03-image-finder` repository is created.
   * When submitting homework, there are two links: to the source files and the live pages of each assignment on `GitHub Pages'.
