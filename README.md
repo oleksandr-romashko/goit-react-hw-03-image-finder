@@ -1,112 +1,122 @@
-# React homework template
+#  goit-react-hw-03-image-finder 
 
-Цей проект був створений за допомогою
-[Create React App](https://github.com/facebook/create-react-app). Для знайомства
-і налаштування додаткових можливостей
-[звернися до документації](https://facebook.github.io/create-react-app/docs/getting-started).
+This is homework for the React HTTP requests.
 
-## Створення репозиторію за шаблоном
+## Live page
 
-Використовуй цей репозиторій організації GoIT як шаблон для створення репозиторію
-свого проєкта. Для цього натисни на кнопку `«Use this template»` і вибери опцію
-`«Create a new repository»`, як показано на зображенні.
+The live page for this repository can be viewed at [GitHub Pages](https://oleksandr-romashko.github.io/goit-react-hw-03-image-finder/).
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+## Local build and run
 
-На наступному кроці відкриється сторінка створення нового репозиторію. Заповни поле
-його імені, переконайся що репозиторій публічний, після чого натисни кнопку
-`«Create repository from template»`.
+  1. Make sure you have an LTS version of Node.js installed on your computer. [Download and install](https://nodejs.org/en/) if needed.
+  1. Install the project's base dependencies with the `npm install` command.
+  1. Start development mode by running the `npm start` command.
+  2. Go to [localhost:3000](http://localhost:3000/) (may vary) in your browser. This page will automatically reload after saving changes to the project files.
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+## Task Acceptance Criteria
 
-Після того як репозиторій буде створено, необхідно перейти в налаштування
-створеного репозиторію на вкладку `Settings` > `Actions` > `General` як
-показано на зображенні.
+[React project template](https://github.com/goitacademy/react-homework-template/blob/main/README.en.md) is used as a starting point for the application (more information about how to start-up with such a project may be found at the template repo description or [here in a Readme file](./README.en.md)).
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+  * The `goit-react-hw-03-image-finder` repository is created.
+  * When submitting homework, there are two links: to the source files and the live pages of each assignment on `GitHub Pages'.
+  * The component state stores the minimum required set of data, the rest is calculated.
+  * There are no errors or warnings in the console when running application code.
+  * Each component has a separate folder with the React-component file and styles file.
+  * The `propTypes` are described for all components.
+  * Everything that a component expects in the form of props is passed to it when it is called.
+  * Component names are clear and descriptive.
+  * The JS code is clean and clear, `Prettier` is used.
+  * Styling is done by `CSS modules` or `Styled Components`.
 
-Проскроливши сторінку до самого кінця, у секції `«Workflow permissions»` вибери
-опцію `«Read and write permissions»` і постав галочку в чекбоксі. Це
-необхідно для автоматизації процесу деплою проєкту.
+## Task - Image Search
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+Write a keyword image search application. Preview of a working application see [link](./assets/task/image-finder-example.mp4) or [link](https://drive.google.com/file/d/1oXCGyiq4uKwW0zzraZLKk4lh3voBlBzZ/view?usp=sharing).
 
-Тепер у тебе є особистий репозиторій проекту, зі структурою файлів і папок
-репозиторію-шаблону. Далі працюй із ним як із будь-яким іншим особистим репозиторієм,
-клонуй його собі на комп'ютер, пиши код, роби комміти і відправляй їх на
-GitHub.
+Create components `<Searchbar>`, `<ImageGallery>`, `<ImageGalleryItem>`, `<Loader>`, `<Button>` и `<Modal>`. Ready styles of components can be taken in file [styles.css](./assets/task/styles.css) and tweak them if needed.
 
-## Підготовка до роботи
+<p align="center">
+  <img max-width="960" src="./assets/task/image-finder-component-preview.jpg" alt="component preview">
+</p>
 
-1. Переконайся що на комп'ютері встановлено LTS-версія Node.js.
-   [Завантаж і встанови](https://nodejs.org/en/) її якщо необхідно.
-2. Встанови базові залежності проєкту командою `npm install`.
-3. Запусти режим розробки, виконавши команду `npm start`.
-4. Перейди в браузері за адресою [http://localhost:3000](http://localhost:3000).
-   Ця сторінка буде автоматично перезавантажуватися після збереження змін у файлах проєкту.
+### Pixabay API instructions
 
-## Деплой
+For HTTP requests, use a public image search service [Pixabay](https://pixabay.com/api/docs/). Register and get a private access key.
 
-Продакшн версія проєкту буде автоматично проходити лінтинг, збиратися і
-деплоїтися на GitHub Pages, у гілку `gh-pages`, щоразу, коли оновлюється
-гілка `main`. Наприклад, після прямого пушу або прийнятого пул-реквесту. Для цього
-необхідно у файлі `package.json` відредагувати поле `homepage`, замінивши
-`your_username` і `your_repo_name` на свої, і відправити зміни на GitHub.
+The URL string of the HTTP request.
 
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
+```
+https://pixabay.com/api/?q=cat&page=1&key=your_key&image_type=photo&orientation=horizontal&per_page=12
 ```
 
-Далі необхідно зайти в налаштування GitHub-репозиторію (`Settings` > `Pages`) і
-виставити роздачу продакшн-версії файлів із папки `/root` гілки `gh-pages`, якщо
-це не було зроблено автоматично.
+Pixabay API supports pagination, by default the `page` parameter is set to `1`. Let the response comes with 12 objects each, set to `per_page`. Don't Remember that when you search for a new keyword, you have to reset the value of page to `1`.
 
-![GitHub Pages settings](./assets/repo-settings.png)
+The response from the api comes an array of objects in which you are only interested in the following properties:
 
-### Статус деплоя
+  * `id` - a unique identifier
+  * `webformatURL` - link to the small image for the list of cards
+  * `largeImageURL` - link to the large image for the modal window
 
-Статус деплою крайнього коміту відображається іконкою біля його ідентифікатора.
+### Description of the component `<Searchbar>`
 
-- **Жовтий колір** - виконується збірка і деплой проєкту.
-- **Зелений колір** - деплой завершився успішно.
-- **Червоний колір** - під час лінтингу, сборки або деплою сталася помилка.
+The component takes one prop `onSubmit` - a function to pass the value of the input when the form is submitted. Creates a DOM element of the following structure:
 
-Детальнішу інформацію про статус можна подивитися, клікнувши на іконку, і
-у вікні, що випадає, перейти за посиланням `Details`.
+```html
+<header class="searchbar">
+  <form class="form">
+    <button type="submit" class="button">
+      <span class="button-label">Search</span>
+    </button>
 
-![Deployment status](./assets/deploy-status.png)
-
-### Жива сторінка
-
-Через якийсь час, зазвичай кілька хвилин, живу сторінку можна буде подивитися
-за адресою, вказаною у відредагованій властивості `homepage`. Наприклад, ось
-посилання на живу версію для цього репозиторію
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
-
-Якщо відкривається порожня сторінка, переконайся, що у вкладці `Console` немає помилок
-пов'язаних із неправильними шляхами до CSS і JS файлів проєкту (**404**). Швидше 
-за все у тебе неправильне значення властивості `homepage` у файлі `package.json`.
-
-### Маршрутизація
-
-Якщо додаток використовує бібліотеку `react-router-dom` для маршрутизації,
-необхідно додатково налаштувати компонент `<BrowserRouter>`, передавши у пропе
-`basename` точну назву твого репозиторію. Слеш на початку рядка обов'язковий.
-
-```jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
+    <input
+      class="input"
+      type="text"
+      autocomplete="off"
+      autofocus
+      placeholder="Search images and photos"
+    />
+  </form>
+</header>
 ```
 
-## Як це працює
+### Description of the `<ImageGallery>` component
 
-![How it works](./assets/how-it-works.png)
+A list of image cards. Creates a DOM element of the following structure:
 
-1. Після кожного пушу в гілку `main` GitHub-репозиторія, запускається спеціальний
-   скрипт (GitHub Action) з файла `.github/workflows/deploy.yml`.
-2. Усі файли репозиторію копіюються на сервер, де проект ініціалізується і
-   проходить лінтинг і збірку перед деплоєм.
-3. Якщо всі кроки пройшли успішно, зібрана продакшн-версія файлів проєкту
-   відправляється в гілку `gh-pages`. В іншому випадку, в лозі виконання
-   скрипта буде вказано в чому проблема.
+```html
+<ul class="gallery">
+  <! -- Set <li>
+  with images -->
+</ul>
+```
+
+### Description of the component `<ImageGalleryItem>`
+
+A list item component with an image. Creates a DOM element of the following structure:
+
+```html
+<li class="gallery-item">
+  <img src="" alt="" />
+</li>
+```
+
+### Description of the `<Button>` component
+
+Pressing the `Load more` button should load the next batch of Images and rendered with the previous ones. The button should be rendered only when there are some loaded images. If the image array is empty, the button is not rendered.
+
+### Description of the `<Loader>` component
+
+Spinner component, displays while images are being loaded. Use any ready made component, e.g. [react-loader-spinner](https://github.com/mhnpd/react-loader-spinner).
+
+### Description of the component `<Modal>`
+
+When you click on a gallery item a modal window with a dark overlay and display a larger version of the image. The modal window should be closed.
+
+The appearance is similar to the functionality of this [VanillaJS-plugin](https://basiclightbox.electerious.com/), only instead of white modal window the image is rendered (in the example press `Run`). Animation is not required.
+
+```html
+<div class="overlay">
+  <div class="modal">
+    <img src="" alt="" />
+  </div>
+</div>
+```
