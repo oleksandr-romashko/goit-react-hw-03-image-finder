@@ -1,3 +1,4 @@
+import { Loader } from "components";
 import css from "./Button.module.css";
 
 /**
@@ -6,6 +7,10 @@ import css from "./Button.module.css";
  * If the image array is empty, the button is not rendered.
  * @returns {React.Component}
  */
-export const Button = () => (
-  <button className={css.button}>Load more</button>
+export const Button = ({ isLoading, onClick }) => (
+  <>
+  <div className={css['button-wrapper']}>
+    {isLoading ? <Loader /> : <button className={css.button} onClick={onClick}>Load more</button>}
+  </div>
+  </>
 );

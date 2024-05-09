@@ -1,0 +1,25 @@
+.message-wrapper {
+  margin-top: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-align: center;
+}
+
+.message-wrapper > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.message-wrapper > *:first-child {
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.message-wrapper > *:not(:first-child) {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 300;
+}

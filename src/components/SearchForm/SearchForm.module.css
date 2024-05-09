@@ -16,16 +16,18 @@
     height: 48px;
     border: 0;
     background-image: url('images/icon-search.svg');
-    background-size: 40%;
+    background-size: 45%;
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0.6;
+    background-color: #fff;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     outline: none;
   }
 
-  & .button-label:hover {
+  & .button:hover {
+    background-color: #e2e1e1;
     opacity: 1;
   }
 
@@ -40,6 +42,10 @@
     clip-path: inset(50%);
     border: 0;
   }
+
+  /* & .button-label:hover {
+    opacity: 1;
+  } */
 
   & .input {
     display: inline-block;
