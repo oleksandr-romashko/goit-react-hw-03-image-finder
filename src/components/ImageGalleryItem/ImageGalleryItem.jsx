@@ -12,6 +12,7 @@ export const ImageGalleryItem = ({webformatURL, largeImageURL, tags}) => (
       title={`Click to zoom`}
       alt={`${tags}`}
       data-large-image-url={largeImageURL}
+      loading="lazy"
     />
   </li>
 );
