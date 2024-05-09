@@ -1,8 +1,7 @@
 import { nanoid } from 'nanoid'
 
-import { ImageGalleryItem, Button, Loader } from "components";
+import { ImageGalleryItem, Button, Loader, Message } from "components";
 import css from "./ImageGallery.module.css";
-import Message from 'components/Message/Message';
 
 const MESSAGE_NOT_FOUND = "Sorry, no results found for your search. Try refining your search terms.";
 const MESSAGE_NO_LOAD_MORE = "You've reached the end of the search results. Feel free to adjust your search criteria or explore more amazing pictures."
