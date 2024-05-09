@@ -1,1 +1,1 @@
-export { getImages } from './images';
+export { getImagesApi } from './images';

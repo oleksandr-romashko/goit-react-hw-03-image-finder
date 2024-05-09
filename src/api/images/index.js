@@ -1,6 +1,6 @@
 import { instance } from 'api/instance';
 
-export const getImages = async (searchQuery, page, perPage) => {
+export const getImagesApi = async (searchQuery, page, perPage) => {
   const { data } = await instance(`?q=${searchQuery}`, {
     params: {
       page: page,
@@ -11,4 +11,4 @@ export const getImages = async (searchQuery, page, perPage) => {
   return data;
 };
 
-export default getImages;
+export default getImagesApi;
