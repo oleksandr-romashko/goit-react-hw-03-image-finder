@@ -10,3 +10,5 @@ export const getImages = async (searchQuery, page, perPage) => {
   });
   return data;
 };
+
+export default getImages;

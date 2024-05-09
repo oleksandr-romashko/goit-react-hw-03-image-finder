@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { getImages } from 'api';
+
 import {
   Searchbar,
   ImageGallery,
@@ -8,7 +10,7 @@ import {
 } from 'components';
 import css from './App.module.css';
 
-import api from 'api';
+
 
 const MESSAGE_ERROR = "Whoops, something went wrong:";
 
@@ -50,7 +52,7 @@ export class App extends React.Component {
   getImages = async () => {
     try {
       this.setState({ isLoading: true, error: this.defaultState.error });
-      const data = await api.getImages(this.state.searchQuery, this.state.page, App.IMG_PER_PAGE);
+      const data = await getImages(this.state.searchQuery, this.state.page, App.IMG_PER_PAGE);
       const images = this.state.images && this.state.images.length > 0 ? [...this.state.images, ...data.hits] : data.hits;
       const hasLoadMore = this.state.page < Math.ceil(data.totalHits / App.IMG_PER_PAGE);
 

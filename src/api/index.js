@@ -1,3 +1,1 @@
-import { getImages } from './images';
-
-export default { getImages };
+export { getImages } from './images';
