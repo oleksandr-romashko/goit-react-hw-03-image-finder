@@ -11,6 +11,9 @@ const MESSAGE_NO_LOAD_MORE = "You've reached the end of the search results. Feel
  * @returns {React.Component}
  */
 export const ImageGallery = ({ images, page, isLoading, hasLoadMore, onLoadMore }) => {
+
+  const handleLoadMore = () => onLoadMore();
+
   return (
     <div>
       <ul className={css.gallery}>
@@ -30,7 +33,7 @@ export const ImageGallery = ({ images, page, isLoading, hasLoadMore, onLoadMore 
       {page === 1 && isLoading && <Loader />}
       {images && images.length === 0 && <Message><p>{MESSAGE_NOT_FOUND}</p></Message>}
       {images && images.length > 0 && !hasLoadMore && <Message><p>{MESSAGE_NO_LOAD_MORE}</p></Message>}
-      {images && hasLoadMore && <Button isLoading={isLoading && page !== 1} onClick={onLoadMore} />}
+      {images && hasLoadMore && <Button isLoading={isLoading && page !== 1} onClick={handleLoadMore} />}
     </div>
   )
 };
