@@ -25,16 +25,16 @@ export class SearchForm extends React.Component {
         <span className={css['button-label']}>Search</span>
       </button>
       
-        <input
-          id="query"
-          className={css.input}
-          name="query"
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-          required
-       />
+      <input
+        id="query"
+        className={css.input}
+        name="query"
+        type="text"
+        autoComplete="off"
+        autoFocus
+        placeholder="Search images and photos"
+        required
+      />
     </form>
   )}
 }
