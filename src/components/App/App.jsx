@@ -10,8 +10,6 @@ import {
 } from 'components';
 import css from './App.module.css';
 
-
-
 const MESSAGE_ERROR = "Whoops, something went wrong:";
 
 /**
