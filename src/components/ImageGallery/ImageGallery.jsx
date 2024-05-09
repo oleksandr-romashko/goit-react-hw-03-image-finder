@@ -10,13 +10,19 @@ const MESSAGE_NO_LOAD_MORE = "You've reached the end of the search results. Feel
  * Gallery of images with a list of image cards.
  * @returns {React.Component}
  */
-export const ImageGallery = ({ images, page, isLoading, hasLoadMore, onLoadMore }) => {
+export const ImageGallery = ({ images, page, isLoading, hasLoadMore, onLoadMore, onOpenModal }) => {
 
   const handleLoadMore = () => onLoadMore();
 
+  const handleGalleryClick = ({target}) => {
+    if (target.nodeName === "IMG") {
+      onOpenModal(target.dataset.largeImageUrl);
+    }
+  }
+
   return (
     <div>
-      <ul className={css.gallery}>
+      <ul className={css.gallery} onClick={handleGalleryClick}>
         {images && images.length > 0 &&
           <>
             {images.map(({ id, webformatURL, largeImageURL, tags }) => (

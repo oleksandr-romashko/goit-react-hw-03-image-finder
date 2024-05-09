@@ -75,6 +75,10 @@ export class App extends React.Component {
     this.setState({page: this.state.page + 1});
   }
 
+  handleOpenModal = (largeImageUrl) => {
+    // TODO: open modale using url
+  }
+
   render() {
     const { images, error, isLoading, hasLoadMore } = this.state;
     return (
@@ -87,13 +91,15 @@ export class App extends React.Component {
           </Message>
         }
         {!error && <ImageGallery
-          className="hello"
-          images={this.state.images}
-          page={this.state.page}
-          isLoading={isLoading}
-          hasLoadMore={hasLoadMore}
-          onLoadMore={this.handleLoadMore}
-        />}
+                      className="hello"
+                      images={this.state.images}
+                      page={this.state.page}
+                      isLoading={isLoading}
+                      hasLoadMore={hasLoadMore}
+                      onLoadMore={this.handleLoadMore}
+                      onOpenModal={this.handleOpenModal}
+                    />
+        }
         {!error && images && images.length > 0 && <ApiReference />}
       </div>
     );
