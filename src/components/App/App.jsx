@@ -30,8 +30,18 @@ export class App extends React.Component {
 
   state = { ...this.defaultState };
 
+  /**
+   * 
+   * * Condition 'this.state.error && prevState.error' helps to mitigate cases, 
+   * * when error occures and allow subsequent submit of the same search request again
+   * * (e.g. network error or unstable connection) without reloading the page.
+   * @param {*} _ 
+   * @param {*} prevState 
+   */
   componentDidUpdate(_, prevState) {
-    if (this.state.page !== prevState.page || this.state.searchQuery !== prevState.searchQuery || (this.state.error && prevState.error)) {
+    if (this.state.page !== prevState.page 
+        || this.state.searchQuery !== prevState.searchQuery
+        || (this.state.error && prevState.error)) {
       if (this.state.searchQuery !== prevState.searchQuery) {
         this.setState({ images: this.defaultState.images });
       }
