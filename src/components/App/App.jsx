@@ -46,7 +46,7 @@ export class App extends React.Component {
       if (this.state.searchQuery !== prevState.searchQuery) {
         this.setState({ images: this.defaultState.images });
       }
-      this.getImages();
+      this.searchForImages();
     }
   }
 
@@ -58,7 +58,7 @@ export class App extends React.Component {
     this.setState({ error: error });
  }
 
-  getImages = async () => {
+  searchForImages = async () => {
     try {
       this.setState({ isLoading: true, error: this.defaultState.error });
       const data = await getImagesApi(this.state.searchQuery, this.state.page, App.IMG_PER_PAGE);
