@@ -1,14 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { getImagesApi } from 'api';
+import { getImagesApi } from "api";
 
 import {
   Searchbar,
   ImageGallery,
   ApiReference,
-  Message
-} from 'components';
-import css from './App.module.css';
+  Message,
+  Modal
+} from "components";
+import css from "./App.module.css";
+import imgError from "images/error-bg.svg";
+import noImage from "images/no-image.svg";
 
 const MESSAGE_ERROR = "Whoops, something went wrong:";
 
@@ -25,24 +28,30 @@ export class App extends React.Component {
     isLoading: false,
     hasLoadMore: false,
     page: 1,
-    isModalOpened: false,
+    modal: {
+      isShowModal: false,
+      imageId: null,
+      placeholderUrl: null,
+      largeImageURL: null,
+    },
     error: null,
   };
 
   state = { ...this.defaultState };
 
   /**
+   * Handles update
    * 
-   * * Condition 'this.state.error && prevState.error' helps to mitigate cases, 
-   * * when error occures and allow subsequent submit of the same search request again
-   * * (e.g. network error or unstable connection) without reloading the page.
-   * @param {*} _ 
-   * @param {*} prevState 
+   * Condition 'this.state.error && prevState.error' helps to mitigate cases, 
+   * when error occures and allow subsequent submit of the same search request again
+   * (e.g. network error or unstable connection) without reloading the page.
+   * @param {object} _ Blank for previous props.
+   * @param {object} prevState Previous component state.
    */
   componentDidUpdate(_, prevState) {
     if (this.state.page !== prevState.page 
-        || this.state.searchQuery !== prevState.searchQuery
-        || (this.state.error && prevState.error)) {
+      || this.state.searchQuery !== prevState.searchQuery
+      || (this.state.error && prevState.error)) {
       if (this.state.searchQuery !== prevState.searchQuery) {
         this.setState({ images: this.defaultState.images });
       }
@@ -56,15 +65,26 @@ export class App extends React.Component {
    */
   componentDidCatch(error) {
     this.setState({ error: error });
- }
+  }
 
+  /**
+   * Handles update of search query value.
+   * @param {string} searchQuery Search query.
+   */
+  handleImageSearch = (searchQuery) => {
+    this.setState({ searchQuery });
+  }
+
+  /**
+   * Serches for images by invoking api.
+   */
   searchForImages = async () => {
     try {
       this.setState({ isLoading: true, error: this.defaultState.error });
       const data = await getImagesApi(this.state.searchQuery, this.state.page, App.IMG_PER_PAGE);
       const images = this.state.images && this.state.images.length > 0 ? [...this.state.images, ...data.hits] : data.hits;
       const hasLoadMore = this.state.page < Math.ceil(data.totalHits / App.IMG_PER_PAGE);
-
+      
       this.setState({
         images,
         hasLoadMore,
@@ -78,16 +98,42 @@ export class App extends React.Component {
     }
   }
 
-  handleImageSearch = (searchQuery) => {
-    this.setState({ searchQuery });
-  }
-
+  /**
+   * Handles load of more images.
+   */
   handleLoadMore = () => {
     this.setState({page: this.state.page + 1});
   }
 
-  handleOpenModal = (largeImageUrl) => {
-    // TODO: open modale using url
+  /**
+   * Handles modal widnow opening.
+   * @param {string} imageId Id of the image.
+   */
+  handleOpenModal = (imageId) => {
+    const { webformatURL: placeholderUrl = noImage,
+            largeImageURL,
+            tags: altText }
+    = this.state.images.find(({ id }) => id === Number(imageId));
+
+    this.setState({
+      modal: {
+        isShowModal: true,
+        placeholderUrl,
+        largeImageURL,
+        altText
+      },
+    });
+  }
+
+  /**
+   * Hadnles modal window close.
+   */
+  handleCloseModal = () => {
+    this.setState({
+      modal: {
+      ...this.defaultState.modal,
+    },
+    });
   }
 
   render() {
@@ -95,11 +141,11 @@ export class App extends React.Component {
     return (
       <div className={css.app}>
         <Searchbar onSearch={this.handleImageSearch} />
-        {error &&
-          <Message>
-            <p>{MESSAGE_ERROR}</p>
-            <p>"{error.message}"</p>
-          </Message>
+        {error && <Message>
+                    <img className={css["image-error"]} src={imgError} alt="error background"></img>
+                    <p>{MESSAGE_ERROR}</p>
+                    <p>"{error.message}"</p>
+                  </Message>
         }
         {!error && <ImageGallery
                       className="hello"
@@ -108,10 +154,18 @@ export class App extends React.Component {
                       isLoading={isLoading}
                       hasLoadMore={hasLoadMore}
                       onLoadMore={this.handleLoadMore}
-                      onOpenModal={this.handleOpenModal}
+                      onImageClick={this.handleOpenModal}
                     />
         }
         {!error && images && images.length > 0 && <ApiReference />}
+        {!error && this.state.modal.isShowModal && <Modal
+                                                      objectFit={Modal.ObjectFit.COVER}
+                                                      placeholderUrl={this.state.modal.placeholderUrl}
+                                                      largeImageURL={this.state.modal.largeImageURL}
+                                                      altText={this.state.modal.altText}
+                                                      oncloseModal={this.handleCloseModal}
+                                                    />
+        }
       </div>
     );
   }

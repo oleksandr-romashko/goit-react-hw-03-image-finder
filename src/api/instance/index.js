@@ -7,5 +7,6 @@ export const instance = axios.create({
   withCredentials: false,
   params: {
     key: REACT_APP_PIXABAY_API_KEY,
+    safesearch: true,
   },
 });

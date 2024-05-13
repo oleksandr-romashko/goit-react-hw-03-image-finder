@@ -9,7 +9,7 @@ import css from "./Button.module.css";
  */
 export const Button = ({ isLoading, onClick }) => (
   <>
-  <div className={css['button-wrapper']}>
+  <div className={css["button-wrapper"]}>
     {isLoading ? <Loader /> : <button className={css.button} onClick={onClick}>Load more</button>}
   </div>
   </>
