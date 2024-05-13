@@ -26,6 +26,24 @@ export class Modal extends React.Component {
     CONTAIN:  "contain",    // shows image with original aspect ratio
   });
 
+  componentDidMount() {
+    window.addEventListener('keyup', this.handleKeyPress);    
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keyup', this.handleKeyPress);
+  }
+
+  /**
+   * Handles keyboard press.
+   * @param {React.SyntheticEvent} event Event.
+   */
+  handleKeyPress = event => {
+    if (event.code === 'Escape') {
+      this.props.oncloseModal();
+    }
+  };
+
   render() {
     const {
       objectFit = Modal.ObjectFit.COVER,
