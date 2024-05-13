@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-03-image-finder/static/css/main.0d95e7c8.css",
-    "main.js": "/goit-react-hw-03-image-finder/static/js/main.c6c07581.js",
+    "main.css": "/goit-react-hw-03-image-finder/static/css/main.b1b80de0.css",
+    "main.js": "/goit-react-hw-03-image-finder/static/js/main.2a81a82f.js",
+    "static/media/error-bg.svg": "/goit-react-hw-03-image-finder/static/media/error-bg.aefae67c84847ffab793badaa696734f.svg",
+    "static/media/no-image.svg": "/goit-react-hw-03-image-finder/static/media/no-image.a6de61a1dd52f869f22f88ea11846173.svg",
     "static/media/pixabay-logo.svg": "/goit-react-hw-03-image-finder/static/media/pixabay-logo.97bc8187d816598aa2905c59eb4cffbd.svg",
     "static/media/icon-search.svg": "/goit-react-hw-03-image-finder/static/media/icon-search.2155db1314d614e28459.svg",
     "index.html": "/goit-react-hw-03-image-finder/index.html",
-    "main.0d95e7c8.css.map": "/goit-react-hw-03-image-finder/static/css/main.0d95e7c8.css.map",
-    "main.c6c07581.js.map": "/goit-react-hw-03-image-finder/static/js/main.c6c07581.js.map"
+    "main.b1b80de0.css.map": "/goit-react-hw-03-image-finder/static/css/main.b1b80de0.css.map",
+    "main.2a81a82f.js.map": "/goit-react-hw-03-image-finder/static/js/main.2a81a82f.js.map"
   },
   "entrypoints": [
-    "static/css/main.0d95e7c8.css",
-    "static/js/main.c6c07581.js"
+    "static/css/main.b1b80de0.css",
+    "static/js/main.2a81a82f.js"
   ]
 }
