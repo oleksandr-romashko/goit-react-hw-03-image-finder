@@ -27,6 +27,10 @@
   align-items: center;
   width: calc(100vw - 14vw);
   height: calc(100vh - 12vh);
+
+  &:hover {
+    cursor: auto;
+  }
 }
 
 .modal-cover .image {
@@ -48,6 +52,10 @@
   align-items: center;
   max-width: calc(100vw - 14vw);
   max-height: calc(100vh - 12vh);
+
+  &:hover {
+    cursor: auto;
+  }
 }
 
 .modal-contain .image {

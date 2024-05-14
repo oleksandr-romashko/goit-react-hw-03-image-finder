@@ -36,7 +36,7 @@ export class Modal extends React.Component {
 
   /**
    * Handles keyboard press.
-   * @param {React.SyntheticEvent} event Event.
+   * @param {React.SyntheticEvent} event Occured event.
    */
   handleKeyPress = event => {
     if (event.code === 'Escape') {
@@ -44,22 +44,32 @@ export class Modal extends React.Component {
     }
   };
 
+  /**
+   * Handle modal window close.
+   * @param {React.SyntheticEvent} event Occured event.
+   */
+  handleModalClose = event => {
+    if(event.target === event.currentTarget) {
+      this.props.oncloseModal();
+    }
+  }
+
   render() {
     const {
       objectFit = Modal.ObjectFit.COVER,
       placeholderUrl = noImage,
       largeImageURL = noImage,
       altText = "large image",
-      oncloseModal
     } = this.props;
     return (
-      <div className={css.overlay} onClick={oncloseModal} title={`Click to zoom-out`}>
+      <div className={css.overlay} onClick={this.handleModalClose} title={`Click to zoom-out`}>
         <div className={css[`modal-${objectFit}`]}>
           <img
             id="image"
             className={css.image}
             src={largeImageURL}
             alt={altText}
+            title={altText}
             style={{ backgroundImage: `url(${placeholderUrl}), url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAAmklEQVR42u3QMREAMAgAMVCKNVDa1kFXhryCv+R5xeJmZvNeJECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQ4BLA7l4NWFUAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAA/13d5oqYpYEYIgAAAABJRU5ErkJggg==)` }}
           />
         </div>
