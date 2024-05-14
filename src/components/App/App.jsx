@@ -72,7 +72,8 @@ export class App extends React.Component {
     }
 
     const input = document.getElementById("query");
-    if (this.state.images && this.state.images.length > 0 && document.activeElement === input) {
+    if ((this.state.images && this.state.images.length > 0 && document.activeElement === input) 
+        || this.state.error) {
       input.blur();
     }
   }
