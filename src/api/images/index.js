@@ -14,8 +14,6 @@ export const getImagesApi = async (searchQuery, page, perPage) => {
     },
     signal: AbortSignal.timeout(5000), //https://axios-http.com/docs/cancellation
   }).catch(function (error) {
-    console.log(typeof error);
-    console.log(error);
     if (error.code === 'ERR_CANCELED') {
       throw new Error(ERROR_MESSAGE_TIMEOUT);
     } else {
