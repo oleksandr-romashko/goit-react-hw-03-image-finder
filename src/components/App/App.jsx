@@ -37,6 +37,7 @@ export class App extends React.Component {
       largeImageURL: null,
     },
     error: null,
+    scrollOffset: 0,
   };
 
   state = { ...this.defaultState };
@@ -65,6 +66,9 @@ export class App extends React.Component {
         this.setState({ images: this.defaultState.images });
       }
       this.searchForImages();
+      if (this.state.scrollOffset !== prevState.scrollOffset) {
+        this.scrollToNewImages(this.state.scrollOffset);
+      }
     }
   }
 
@@ -110,8 +114,23 @@ export class App extends React.Component {
   /**
    * Handles load of more images.
    */
-  handleLoadMore = () => {
-    this.setState({page: this.state.page + 1});
+  handleLoadMore = (event) => {
+    this.setState({
+      page: this.state.page + 1,
+      scrollOffset: document.getElementById("image-gallery").offsetHeight,
+    });
+  }
+
+  /**
+   * Scrolls to new banch of images.
+   */
+  scrollToNewImages = (offset) => {
+    setTimeout(() => {
+      window.scroll({
+        top: offset,
+        behavior: "smooth"
+      });
+    }, 400);
   }
 
   /**

@@ -26,7 +26,7 @@ export const ImageGallery = ({ images, page, isLoading, hasLoadMore, onLoadMore,
   }
   return (
     <div>
-      <ul className={css.gallery} onClick={handleGalleryImageClick}>
+      <ul id="image-gallery" className={css.gallery} onClick={handleGalleryImageClick}>
         {images && images.length > 0 &&
           <>
             {images.map(({ id, previewURL, webformatURL, tags }, idx) => (
