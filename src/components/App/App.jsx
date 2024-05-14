@@ -159,7 +159,7 @@ export class App extends React.Component {
         }
         {!error && images && images.length > 0 && <ApiReference />}
         {!error && this.state.modal.isShowModal && <Modal
-                                                      objectFit={Modal.ObjectFit.COVER}
+                                                      objectFit={Modal.ObjectFit.CONTAIN}
                                                       placeholderUrl={this.state.modal.placeholderUrl}
                                                       largeImageURL={this.state.modal.largeImageURL}
                                                       altText={this.state.modal.altText}
