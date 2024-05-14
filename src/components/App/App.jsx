@@ -76,6 +76,11 @@ export class App extends React.Component {
         || this.state.error) {
       input.blur();
     }
+
+    if (prevState.modal.isShowModal !== this.state.modal.isShowModal) {
+      document.body.style.height = this.state.modal.isShowModal ? "100vh" : "";
+      document.body.style.overflow = this.state.modal.isShowModal ? "hidden" : "";
+    }
   }
 
   /**
