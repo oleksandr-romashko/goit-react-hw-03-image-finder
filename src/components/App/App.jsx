@@ -14,6 +14,7 @@ import css from "./App.module.css";
 import { loadCriticalImages } from "helpers/preloadedImages";
 import imgError from "images/critical/error-bg.svg";
 import imgNoImage from "images/critical/no-image.svg";
+import { smoothScroll } from "helpers/smoothScroll";
 
 const MESSAGE_ERROR = "Whoops, something went wrong:";
 
@@ -23,6 +24,8 @@ const MESSAGE_ERROR = "Whoops, something went wrong:";
  */
 export class App extends React.Component {
   static IMG_PER_PAGE = 12;
+  static SMOOTH_SCROLL_DURATION = 500;
+
 
   defaultState = {
     searchQuery: "",
@@ -119,13 +122,12 @@ export class App extends React.Component {
   }
 
   /**
-   * Scrolls to new banch of images.
+   * Scrolls to the start of newly loaded images.
    */
   scrollToNewImages = () => {
-    window.scroll({
-      top: this.state.scrollOffset,
-      behavior: "smooth"
-    });
+    if (document.documentElement.scrollTop > 0) {
+      smoothScroll(App.SMOOTH_SCROLL_DURATION, this.state.scrollOffset + 16);
+    }
   }
 
   /**

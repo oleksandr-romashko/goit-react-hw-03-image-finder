@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { ImageGalleryItem, Button, Loader, Message } from "components";
 import css from "./ImageGallery.module.css";
 import errorImg from "images/critical/error-bg.svg";
-import { render } from "@testing-library/react";
 
 const MESSAGE_NOT_FOUND = "Sorry, no results found for your search. Try refining your search terms.";
 const MESSAGE_END_OF_SEARCH_RESULTS = "You've reached the end of the search results. Feel free to adjust your search criteria or explore more amazing pictures."
@@ -28,8 +27,14 @@ export class ImageGallery extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    this.props.onUpdate();
+  /**
+   * Handles component update on change in number of provided images.
+   * @param {object} prevProps Previous component properties. 
+   */
+  componentDidUpdate(prevProps) {
+    if (prevProps.images && this.props.images && this.props.images.length !== prevProps.images.length) {
+      this.props.onUpdate();
+    }
   }
 
   render() {
@@ -62,7 +67,6 @@ export class ImageGallery extends React.Component {
     )
 
   }
-  
 }
 
 ImageGallery.propTypes = {
