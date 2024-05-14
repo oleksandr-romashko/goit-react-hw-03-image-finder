@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import css from "./Modal.module.css";
-import noImage from "images/no-image.svg"
+import noImage from "images/critical/no-image.svg"
 
 /**
  * Modal window with overlay which displays a larger version of image.

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import { ImageGalleryItem, Button, Loader, Message } from "components";
 import css from "./ImageGallery.module.css";
-import errorImg from "images/error-bg.svg";
+import errorImg from "images/critical/error-bg.svg";
 
 const MESSAGE_NOT_FOUND = "Sorry, no results found for your search. Try refining your search terms.";
 const MESSAGE_END_OF_SEARCH_RESULTS = "You've reached the end of the search results. Feel free to adjust your search criteria or explore more amazing pictures."

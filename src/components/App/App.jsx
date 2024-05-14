@@ -10,8 +10,10 @@ import {
   Modal
 } from "components";
 import css from "./App.module.css";
-import imgError from "images/error-bg.svg";
-import noImage from "images/no-image.svg";
+
+import { loadCriticalImages } from "helpers/preloadedImages";
+import imgError from "images/critical/error-bg.svg";
+import imgNoImage from "images/critical/no-image.svg";
 
 const MESSAGE_ERROR = "Whoops, something went wrong:";
 
@@ -38,6 +40,13 @@ export class App extends React.Component {
   };
 
   state = { ...this.defaultState };
+
+  /**
+   * Loads critically necessary images.
+   */
+  componentDidMount() {
+    loadCriticalImages();
+  }
 
   /**
    * Handles update
@@ -110,7 +119,7 @@ export class App extends React.Component {
    * @param {string} imageId Id of the image.
    */
   handleOpenModal = (imageId) => {
-    const { webformatURL: placeholderUrl = noImage,
+    const { webformatURL: placeholderUrl = imgNoImage,
             largeImageURL,
             tags: altText }
     = this.state.images.find(({ id }) => id === Number(imageId));
