@@ -15,7 +15,7 @@ export class SearchForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const searchQuery = event.target.query.value;
-      this.props.submit(searchQuery);
+    this.props.submit(searchQuery);
   }
   
   render() {
