@@ -27,11 +27,11 @@ export class Modal extends React.Component {
   });
 
   componentDidMount() {
-    window.addEventListener('keyup', this.handleKeyPress);    
+    window.addEventListener("keyup", this.handleKeyPress);
   }
-
+  
   componentWillUnmount() {
-    window.removeEventListener('keyup', this.handleKeyPress);
+    window.removeEventListener("keyup", this.handleKeyPress);
   }
 
   /**
@@ -39,7 +39,7 @@ export class Modal extends React.Component {
    * @param {React.SyntheticEvent} event Occured event.
    */
   handleKeyPress = event => {
-    if (event.code === 'Escape') {
+    if (event.code === "Escape") {
       this.props.oncloseModal();
     }
   };
