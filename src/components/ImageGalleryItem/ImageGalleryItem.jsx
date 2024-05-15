@@ -7,6 +7,7 @@ import css from "./ImageGalleryItem.module.css";
 export const ImageGalleryItem = ({ id, previewURL, webformatURL, tags }) => {
   return (
     <li className={css["gallery-item"]}>
+      <button className={css["item-button"]}>
         <img
           className={css.image}
           src={webformatURL}
@@ -16,6 +17,7 @@ export const ImageGalleryItem = ({ id, previewURL, webformatURL, tags }) => {
           style={{ backgroundImage: `url(${previewURL}`}}
           loading="lazy"
         />
+      </button>
     </li>
   )
 };

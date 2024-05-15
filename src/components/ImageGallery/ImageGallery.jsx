@@ -22,6 +22,10 @@ const MESSAGE_END_OF_SEARCH_RESULTS = "You've reached the end of the search resu
 export class ImageGallery extends React.Component {
 
   handleGalleryImageClick = ({target}) => {
+    if (target.nodeName === "BUTTON") {
+      this.props.onImageClick(target.firstElementChild.dataset.id);
+    }
+
     if (target.nodeName === "IMG") {
       this.props.onImageClick(target.dataset.id);
     }
