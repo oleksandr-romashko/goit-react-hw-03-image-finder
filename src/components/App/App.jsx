@@ -40,7 +40,7 @@ export class App extends React.Component {
       largeImageURL: null,
     },
     error: null,
-    scrollOffset: 0,
+    scrollOffsetOnLoadMore: null,
   };
 
   state = { ...this.defaultState };
@@ -78,8 +78,7 @@ export class App extends React.Component {
     }
 
     if (prevState.modal.isShowModal !== this.state.modal.isShowModal) {
-      document.body.style.height = this.state.modal.isShowModal ? "100vh" : "";
-      document.body.style.overflow = this.state.modal.isShowModal ? "hidden" : "";
+      document.documentElement.style.overflowY = this.state.modal.isShowModal ? "hidden" : "";
     }
   }
 
@@ -128,7 +127,7 @@ export class App extends React.Component {
   handleLoadMore = () => {
     this.setState({
       page: this.state.page + 1,
-      scrollOffset: document.getElementById("image-gallery").offsetHeight,
+      scrollOffsetOnLoadMore: document.getElementById("image-gallery").offsetHeight,
     });
   }
 
@@ -137,7 +136,10 @@ export class App extends React.Component {
    */
   scrollToNewImages = () => {
     if (document.documentElement.scrollTop > 0) {
-      smoothScroll(App.SMOOTH_SCROLL_DURATION, this.state.scrollOffset + 16);
+      smoothScroll(App.SMOOTH_SCROLL_DURATION, this.state.scrollOffsetOnLoadMore + 16);
+      this.setState({
+        scrollOffsetOnLoadMore: null,
+      });
     }
   }
 
