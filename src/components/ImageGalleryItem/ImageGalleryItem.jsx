@@ -5,6 +5,11 @@ import css from "./ImageGalleryItem.module.css";
  * @returns {React.Component}
  */
 export const ImageGalleryItem = ({ id, previewURL, webformatURL, tags }) => {
+
+  const assignAltText = (event) => {
+    event.target.alt = tags;
+  }
+
   return (
     <li className={css["gallery-item"]}>
       <button className={css["item-button"]}>
@@ -12,10 +17,11 @@ export const ImageGalleryItem = ({ id, previewURL, webformatURL, tags }) => {
           className={css.image}
           src={webformatURL}
           title={`Click to zoom-in`}
-          alt={tags}
+          alt=""
           data-id={id}
           style={{ backgroundImage: `url(${previewURL}`}}
           loading="lazy"
+          onLoad={assignAltText}
         />
       </button>
     </li>
